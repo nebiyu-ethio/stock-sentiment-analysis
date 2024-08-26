@@ -1,31 +1,24 @@
-name: Python CI/CD
+name: Super-Linter
 
-on:
+on: 
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  build:
+  super-lint:
+    name: Lint code base
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.12.4
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-      - name: Install dependencies
+      - name: Run a multi-line script
         run: |
-          python --version  # Confirm Python 3.12.4 is being used
-          pip install --upgrade pip  # Upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run tests
-        run: pytest
-
-      - name: Debug: List installed packages
-        run: pip list
+          echo Add other actions to build,
+          echo test, and deploy your project.
